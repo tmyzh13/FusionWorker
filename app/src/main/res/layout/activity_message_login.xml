@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bm.fusionworker.views.MessageLoginActivity">
+
+    <com.bm.fusionworker.weights.NavBar
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <EditText
+            android:id="@+id/phone_et"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:background="@null"
+            android:gravity="bottom"
+            android:hint="@string/hint_input_phone"
+            android:inputType="number"
+            android:maxLength="11"
+            android:paddingBottom="@dimen/dp_5"
+            android:singleLine="true"
+            android:textColorHint="@color/text_gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line" />
+
+        <RelativeLayout
+            android:id="@+id/code_rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:gravity="bottom">
+
+            <EditText
+                android:id="@+id/code_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_5"
+                android:background="@null"
+                android:hint="@string/hint_input_code"
+                android:inputType="number"
+                android:maxLength="6"
+                android:paddingBottom="@dimen/dp_5"
+                android:singleLine="true"
+                android:textColorHint="@color/text_gray" />
+
+            <TextView
+                android:id="@+id/get_code_tv"
+                android:layout_width="@dimen/dp_120"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/get_code_shape_bg"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_10"
+                android:text="@string/action_get_code"
+                android:textColor="@color/app_blue" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:background="@color/line" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/login_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginLeft="@dimen/dp_48"
+            android:layout_marginRight="@dimen/dp_48"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/blue_shape_bg"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_title" />
+
+    </LinearLayout>
+</LinearLayout>

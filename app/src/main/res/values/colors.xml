@@ -3,4 +3,20 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="app_blue">#23a1fc</color>
+    <color name="dark_blue">#47547a</color>
+    <!-- 文字主要色调 -->
+    <color name="text_color_main">#3e3e3e</color>
+    <color name="black_bg_color">#000000</color>
+    <color name="text_white">#ffffff</color>
+    <color name="text_gray">#9b9b9b</color>
+    <color name="text_main">#666</color>
+    <color name="line">#e6e6e6</color>
+    <color name="mainColor">#3464dd</color>
+    <color name="colorActivityBg">#f2f1f7</color>
+    <color name="text_light">#999</color>
+    <color name="light_gray">#f1f1f2</color>
+    <color name="red_dots">#fd6a69</color>
+
 </resources>

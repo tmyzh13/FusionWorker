@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    tools:context="com.bm.fusionworker.fragment.RepairFragment">
+
+    <LinearLayout
+        android:padding="@dimen/dp_2"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="@dimen/dp_48"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp_48"
+        android:background="@drawable/white_shape_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_map"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/tv_corner_blue"
+            android:gravity="center"
+            android:text="@string/map"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_list"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/list"
+            android:textColor="@color/app_blue" />
+    </LinearLayout>
+</RelativeLayout>
