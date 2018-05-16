@@ -3,11 +3,71 @@
     <string name="net_error">网络无法连接\n请查看网络设置或稍后重试</string>
     <string name="reload">重新加载</string>
     <string name="permission_denied">权限被禁止,无法使用</string>
+    <string name="double_press_for_exit">再次点击返回退出程序</string>
     <string name="data_null">没有数据</string>
     <string name="repair">维修</string>
     <string name="inspection">巡检</string>
     <string name="map">地图</string>
     <string name="list">列表</string>
+    <string name="repair_bean_title">雨花充电站充电磁接触器坏了啊</string>
+    <string name="repair_bean_time">2018.05.09 10:10</string>
+    <string name="repair_bean_distance">距离您500米</string>
+    <string name="repair_bean_address">雨花台雨花大道120号</string>
+    <string name="status_unconfirmed">未确认</string>
+    <string name="status_ongoing">进行中</string>
+    <string name="status_not_acceptance">未验收</string>
+    <!--repair item string-->
+    <string name="distance">5.9KM</string>
+    <string name="work_orders_num">工单编号</string>
+    <string name="create_time">创建时间</string>
+    <string name="urgent_level">紧急程度</string>
+    <string name="assignor">指派人</string>
+    <string name="pile_num">电桩编号</string>
+    <string name="parts_info">部件信息</string>
+    <string name="repair_parts">维修部件</string>
+    <string name="repair_time">维修时间</string>
+    <string name="start_repair">开始维修</string>
+    <string name="continue_repair">继续维修</string>
+    <string name="accept_work_order">接受工单</string>
+    <string name="inspection_person">巡检人</string>
+    <string name="inspection_time">巡检时间</string>
+    <string name="inspection_cycle">巡检周期</string>
+    <string name="start_inspection">开始巡检</string>
+    <string name="repair_history">修复记录</string>
+    <string name="device_picture">设备图片</string>
+    <string name="arrive_time">到达现场时间</string>
+    <string name="repairing">维修过程</string>
+    <string name="repaired_info">修复信息</string>
+    <string name="repaired_time">修复时间</string>
+    <string name="repaired_parts">维修部分</string>
+    <string name="handle_result">处理结果</string>
+    <string name="hint_handle_result">请输入处理结果</string>
+    <string name="remarks_info">备注信息</string>
+    <string name="choice_photo_add">添加图片</string>
+    <string name="photo_action">拍照</string>
+    <string name="gallery_action">相册</string>
+    <string name="submit_success">提交成功！</string>
+    <string name="submit_fail">提交失败！</string>
+    <string name="exsit">确定要退出么？</string>
+    <string name="information_tips">提示！</string>
+
+    <!--inspection item-->
+    <string name="inspection_list">巡检单</string>
+    <string name="inspection_list_details">工单详情</string>
+    <string name="see_inspection_list_details">点击查看工单详情</string>
+    <string name="inspection_info">巡检信息</string>
+    <string name="onsite_person">现场人员</string>
+    <string name="please_chose">请选择</string>
+    <string name="onsite_des">现场描述</string>
+    <string name="site_picture">站点照片</string>
+    <string name="is_find_fault">是否发现故障</string>
+    <string name="fault_register">故障登记-1</string>
+    <string name="device_num">设备编号</string>
+    <string name="hint_device_num">请输入编号</string>
+    <string name="fault_type">故障类型</string>
+    <string name="fault_des">故障描述</string>
+    <string name="fault_picture">故障照片</string>
+    <string name="register_more_fault">登记更多故障信息</string>
 
     <!--login-->
     <string name="hint">提示</string>
@@ -28,6 +88,7 @@
     <string name="login_forget_password">忘记密码？</string>
     <string name="login_error">登录失败</string>
     <string name="login_success">登录成功</string>
+
     <!--注册-->
     <string name="regist">注册</string>
     <string name="phone_has_used">手机号已经被注册</string>
@@ -37,6 +98,7 @@
     <string name="regist_appointment">我已阅读，并同意《用户注册协议》</string>
     <string name="pwd_cannot_contain_space">密码不能包含空格！</string>
     <string name="register_success">注册成功！</string>
+
     <!--重置密码-->
     <string name="reset_password">重置密码</string>
     <string name="reset_password_hint">验证码已经发送到您的手机</string>
@@ -52,6 +114,7 @@
     <string name="account_pwd_fault">账号或密码错误，请重新输入</string>
     <string name="pwd2_not_agumention">两次密码不一致！</string>
     <string name="rest_pwd_success">重置密码成功！</string>
+
     <!--设置-->
     <string name="settings">设置</string>
     <string name="about_us">关于我们</string>
@@ -60,8 +123,13 @@
     <string name="contact_us">联系客服</string>
     <string name="juridical_canon">法律条规</string>
     <string name="feed_back">意见反馈</string>
+    <string name="setting_new_version">检测到有新版本</string>
+    <string name="setting_clause">版权声明于免责条款</string>
+    <string name="setting_exit">退出</string>
+
     <!--个人信息-->
     <string name="user_info">个人信息</string>
+    <string name="upload_phote">上传图片</string>
     <string name="head_iv">头像</string>
     <string name="name">姓名</string>
     <string name="gender">性别</string>
@@ -78,12 +146,148 @@
     <string name="chose_img">上传图片</string>
     <string name="camera">相机</string>
     <string name="picture">照片</string>
+    <string name="write_birthday">填写生日</string>
+    <string name="write_address">填写地址</string>
+    <string name="write_name">填写姓名</string>
+    <string name="write_department">填写部门</string>
+    <string name="write_user_type">填写用户类型</string>
+    <string name="write_w3account">填写w3账号</string>
+    <string name="write_worker_number">填写工号</string>
+    <string name="name_cannot_null">姓名不能为空。</string>
+    <string name="sex_cannot_null">性别不能为空。</string>
+    <string name="wrong_email_address">您输入的邮箱地址格式不正确！</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="secret">保密</string>
+    <string name="upload_photo_error">上传头像失败</string>
+    <string name="user_info_get_fail">获取用户信息失败</string>
+    <string name="user_info_modify_success">提交成功</string>
+    <string name="user_info_modify_fail">提交失败</string>
     <!--个人中心-->
     <string name="inspector">巡检工单</string>
     <string name="waite_accept_check">待验收工单</string>
     <string name="already_accept_check">已验收工单</string>
+    <string name="completed">已完成工单</string>
+    <string name="un_completed">未完成工单</string>
+    <string name="refund_history">退单记录</string>
     <string name="log_out">退出登录</string>
+    <string name="refund_reason">退单原因</string>
+    <string name="refund_des">任务过多，紧急情况需处理</string>
+    <string name="user_inspection_list">巡检列表</string>
+    <string name="edit">编辑</string>
+    <string name="down">完成</string>
+    <string name="delete">删除</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--验收人员-->
+    <string name="worker_list">工单列表</string>
+    <string name="repair_completion_degree">维修完成度</string>
+    <string name="has_repaired">已修复</string>
+    <string name="not_repaired">未修复</string>
+    <string name="sing">单</string>
+    <string name="waite_accept">待验收</string>
+    <string name="create_patrol_plan">创建巡查计划</string>
+    <string name="park_address">园区地址</string>
+    <string name="chose_inspector">选择巡检人</string>
+    <string name="input_inspection_address">输入巡检地址</string>
+    <string name="content">内容</string>
+    <string name="not_acceptance_work">未验收工单</string>
+    <string name="start_accept">开始验收</string>
+    <string name="repair_person">维修人</string>
+    <string name="accept_work">验收工单</string>
+    <string name="is_repair_success">是否修复成功</string>
+    <string name="accept_register">验收登记</string>
+    <string name="accept_person">验收人员</string>
+    <string name="accept_history">验收记录</string>
+    <string name="local_picture">现场照片</string>
+
+    <!--充电详情-->
+    <string name="charge_detail">充电详情</string>
+    <string name="charge_station_name">充电点：</string>
+    <string name="charge_zhuang_number">充电桩编号：</string>
+    <string name="charge_cost">充电费：</string>
+    <string name="charge_service_cost">服务费：</string>
+    <string name="choose_charge_gun">选择充电枪</string>
+    <string name="choose_charge_style">选择充电方式</string>
+    <string name="with_power">按电量</string>
+    <string name="with_money">按金额</string>
+    <string name="with_time">按时间</string>
+    <string name="charge_enouth">充满</string>
+    <string name="please_enter_charge_count">  请输入充电度数</string>
+    <string name="start_chareg">开始充电</string>
+    <string name="choose_charge_full">  已选择充满</string>
+    <string name="charge_capture_hint">将充电桩上的二维码放入框内，即可享受充电服务</string>
+    <string name="charge">充电</string>
+    <string name="change_enter_erweima_charge">切换至输入二维码编号充电</string>
+    <string name="sure">确定</string>
+    <string name="please_input_erweima_number">请输入二维码编号</string>
+    <string name="no_charge_gun_cannot_charge">没有获取到可用充电枪，无法充电。</string>
+    <string name="please_enter_1_999_int">请输入1到999之间的整数</string>
+    <string name="please_input_charge_count">请先输入充电数</string>
+    <string name="no_user_info">没有获取到信息。</string>
+    <string name="server_wrong">服务器返回未知错误。</string>
+    <string name="please_take_qrcode">请对准二维码</string>
+    <string name="wrong_request">请求出现错误！</string>
+    <string name="time_out">连接超时。</string>
+    <string name="time_out_or_qrcode_wrong">连接超时或输入二维码不正确。</string>
+    <string name="scan_time_out">二维码扫描有误</string>
+    <string name="no_data">未获取到数据！</string>
+    <string name="no_search_station">没有搜索到相关站点信息！</string>
+
+    <string name="login_fail">登录失效</string>
+    <string name="has_no_pay_order">有未支付订单</string>
+    <string name="has_charging_order">有充电中的订单</string>
+    <string name="has_appointment">有预约</string>
+    <string name="useing">使用中（已充电）</string>
+    <string name="useing_no_charge">使用中（未充电）</string>
+    <string name="appoingment_ing">预约中</string>
+    <string name="stop_server">停止服务</string>
+    <string name="please_input_key_value">请输入关键词查询</string>
+    <string name="search_station_destation">目的地</string>
+    <string name="charging_end_fail">充电结束失败</string>
+
+    <!--单位-->
+    <string name="km">KM</string>
+    <string name="yuan">元</string>
+    <string name="yuan_du">元&#047;度</string>
+    <string name="du">度</string>
+
+    <string name="charging_statue">充电状态</string>
+    <string name="charge_gun_">充电枪：</string>
+    <string name="gun_status_free">空闲</string>
+    <string name="gun_not_using">插抢未使用</string>
+    <string name="gun_status_using">使用中</string>
+    <string name="gun_status_appoint">预约中</string>
+    <string name="gun_status_stop_service">停止服务</string>
+    <string name="gun_status_bad">故障</string>
+    <string name="home_chager_fee">充电费用</string>
+    <string name="please_input_charge_money">请输入充电金额</string>
+    <string name="please_input_charge_time">请输入充电时长</string>
+    <string name="home_charge_alternating">交流</string>
+    <string name="home_charge_direct">直流</string>
+    <string name="charging_statue_time">充电时长（分）</string>
+    <string name="charging_statue_kw">功率</string>
+    <string name="charging_statue_a">电流(A)</string>
+    <string name="charging_statue_v">电压(V)</string>
+    <string name="charging_statue_current">当前电量</string>
+    <string name="charging_statue_hint">您确定要结束充电去支付？</string>
+    <string name="charging_statue_electronic">已充电量</string>
+    <string name="charging_statue_fee">充电费用</string>
+    <string name="stop_charging">结束充电</string>
+    <string name="hint_stop_charging">您确定要结束充电？</string>
+    <string name="hint_stop_charging_pay">您的充电已结束，请前往支付</string>
+    <string name="charging_statue_fail">开始充电失败</string>
+    <string name="charging_statue_please_check">请检查桩与车的连接状态....</string>
+    <string name="charging_statue_ending">正在结束充电，请耐心等待....</string>
+    <string name="charging_statue_end_go_to_pay">您的充电已结束，请前往支付</string>
+    <string name="charging_statue_checking">正在检测安全性....</string>
+    <string name="dont_end">请勿结束充电</string>
+    <string name="hint_right_code">请输入正确的二维码</string>
+
+    <!--map-->
+    <string name="pile_status">电桩状态</string>
+    <string name="pile_status_normal">正常运行</string>
+    <string name="pile_status_using">正在使用</string>
+    <string name="pile_status_stopped">停止运行</string>
+    <string name="guilding">导航中</string>
+
 </resources>

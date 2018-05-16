@@ -3,5 +3,6 @@
 
     <corners android:radius="@dimen/dp_20"/>
 
-    <solid android:color="@color/app_blue"/>
+    <solid android:color="@color/btn_blue"/>
+
 </shape>

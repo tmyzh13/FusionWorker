@@ -2,6 +2,7 @@ package com.bm.fusionworker.model;
 
 
 import com.bm.fusionworker.model.beans.UserBean;
+import com.bm.fusionworker.model.beans.UserInfoBean;
 import com.corelibs.utils.PreferencesHelper;
 
 
@@ -10,7 +11,7 @@ public class UserHelper {
         PreferencesHelper.saveData(user);
     }
 
-    public static void saveUserInfo(UserBean userInfoBean) {
+    public static void saveUserInfo(UserInfoBean userInfoBean) {
         PreferencesHelper.saveData(userInfoBean);
     }
 

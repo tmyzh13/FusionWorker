@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.huawei.fusionchargeapp.weights.NavBar
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_address_name"
+        style="@style/text_normal"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp">
+
+        <com.huawei.fusionchargeapp.weights.CircleProgressView
+            android:id="@+id/progress"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_centerInParent="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_charge_time"
+                style="@style/text_normal"
+                android:text="00:00"
+                android:textColor="@color/app_blue"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/text_normal"
+                android:layout_marginTop="7dp"
+                android:text="@string/charging_statue_time"
+                android:textSize="@dimen/text_small_small" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/ic_time01" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_kw"
+                style="@style/text_normal"
+                android:text="0"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/text_normal"
+                android:layout_marginTop="10dp"
+                android:text="@string/charging_statue_kw" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="25dp"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/text_normal"
+                android:text="388.5"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/text_normal"
+                android:layout_marginTop="10dp"
+                android:text="@string/charging_statue_v" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="25dp"
+            android:background="@color/line"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_current_charger"
+                style="@style/text_normal"
+                android:text="0%"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/text_normal"
+                android:layout_marginTop="10dp"
+                android:text="@string/charging_statue_current" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/view_line"
+        android:layout_marginTop="25dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/list_ic_dian" />
+
+                <TextView
+                    style="@style/text_normal"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:text="@string/charging_statue_electronic" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_charged_enegy"
+                style="@style/text_normal"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <View style="@style/view_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/list_ic_money" />
+
+                <TextView
+                    style="@style/text_normal"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:text="@string/charging_statue_fee" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_charged_money"
+                style="@style/text_normal"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/app_blue" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View style="@style/view_line" />
+
+    <TextView
+        android:id="@+id/tv_pay"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/little_coner_blue_shape"
+        android:enabled="false"
+        android:gravity="center"
+        android:text="@string/stop_charging"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+</LinearLayout>

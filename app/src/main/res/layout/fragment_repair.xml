@@ -5,14 +5,19 @@
     android:background="@color/line"
     tools:context="com.bm.fusionworker.fragment.RepairFragment">
 
+    <TextView
+        android:layout_centerInParent="true"
+        android:text="@string/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <LinearLayout
-        android:padding="@dimen/dp_2"
+        android:padding="@dimen/dp_3"
         android:layout_width="@dimen/dp_180"
         android:layout_height="@dimen/dp_48"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/dp_48"
-        android:background="@drawable/white_shape_bg"
+        android:background="@drawable/white_shape20_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -33,6 +38,6 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/list"
-            android:textColor="@color/app_blue" />
+            android:textColor="@color/btn_blue" />
     </LinearLayout>
 </RelativeLayout>

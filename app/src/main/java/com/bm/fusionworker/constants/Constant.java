@@ -30,4 +30,19 @@ public class Constant {
     public static final int REGISTER_FAILURE = 1;
     //手机号已注册
     public static final int PHONE_HAS_USED = 201;
+
+    //临时图片集合
+    public static final String TEMP_PIC_LIST="temp_pic_list";
+
+    //预约计时
+    public static final String TIME_APPOINTMENT="time_appointment";
+    //预约时长
+    public static final String APPOINTMENT_DURING="appointment_during";
+
+    //刷新预约时间
+    public static final String REFRESH_APPOINTMENT_TIME="refresh_appointment_time";
+    //预约超时
+    public static final String APPOINTMENT_TIME_OUT="appointment_time_out";
+    //充电时间
+    public static final String CHARGING_TIME="charge_time";
 }

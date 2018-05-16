@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bm.fusionworker.fragment.RepairListFragment">
+
+    <com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout
+        android:id="@+id/ptrLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.corelibs.views.ptr.loadmore.widget.AutoLoadMoreListView
+            android:id="@+id/lv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:divider="@color/line"
+            android:dividerHeight="5dp"
+            android:scrollbars="none" />
+
+    </com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="@dimen/dp_48"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp_48"
+        android:background="@drawable/shadow_white_shape_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_3">
+
+        <TextView
+            android:id="@+id/tv_map"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/map"
+            android:textColor="@color/btn_blue" />
+
+        <TextView
+            android:id="@+id/tv_list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_corner_blue"
+            android:gravity="center"
+            android:text="@string/list"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical"
+    tools:context="com.bm.fusionworker.views.mine.RefundHistoryActivity">
+
+    <com.bm.fusionworker.weights.NavBar
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout
+        android:id="@+id/ptrLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <com.corelibs.views.ptr.loadmore.widget.AutoLoadMoreListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:divider="@color/line"
+            android:dividerHeight="@dimen/dp_10"
+            android:scrollbars="none" />
+
+    </com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout>
+</LinearLayout>

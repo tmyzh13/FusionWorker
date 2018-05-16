@@ -13,165 +13,84 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <RelativeLayout
-        android:id="@+id/about_us_rl"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+    <TextView
+        android:id="@+id/tv_about_us"
+        style="@style/textview2"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/list_selector"
+        android:text="@string/about_us" />
+
+    <TextView
+        android:id="@+id/tv_help"
+        style="@style/textview2"
+        android:background="@drawable/list_selector"
+        android:text="@string/helper" />
+
+
+    <LinearLayout
+        android:id="@+id/layout_version"
+        style="@style/item_layout_simple"
+        android:layout_margin="0dp"
+        android:background="@drawable/list_selector"
+        android:orientation="horizontal"
+        android:padding="0dp">
+
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/about_us" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/expand" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/use_helper_rl"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/helper" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/expand" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/app_version_rl"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            style="@style/textview2"
+            android:layout_weight="1"
             android:text="@string/app_version" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/expand" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/contact_us_rl"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/contact_us" />
+            android:id="@+id/tv_version"
+            style="@style/textview2"
+            android:layout_weight="1"
+            android:drawablePadding="-5dp"
+            android:drawableRight="@mipmap/new_version"
+            android:gravity="right|center_vertical"
+            android:paddingRight="@dimen/dp_5"
+            android:text="@string/setting_new_version"
+            android:textColor="@color/app_blue" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/expand" />
-    </RelativeLayout>
+    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/line" />
 
-    <RelativeLayout
-        android:id="@+id/juridical_canon_rl"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+    <TextView
+        android:id="@+id/tv_clause"
+        style="@style/textview2"
+        android:background="@drawable/list_selector"
+        android:text="@string/juridical_canon" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/juridical_canon" />
+    <TextView
+        android:id="@+id/tv_advice"
+        style="@style/textview2"
+        android:background="@drawable/list_selector"
+        android:text="@string/feed_back" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/expand" />
-    </RelativeLayout>
+    <TextView
+        style="@style/textview2"
+        android:layout_centerVertical="true"
+        android:background="@drawable/list_selector"
+        android:text="@string/contact_us" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/line" />
-    <RelativeLayout
-        android:id="@+id/feed_back_rl"
+    <TextView
+        android:id="@+id/tv_login_out"
+        style="@style/textview2"
+        android:background="@drawable/list_selector"
+        android:text="@string/log_out" />
+
+    <TextView
+        android:id="@+id/tv_exit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/feed_back" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/expand" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/line" />
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@drawable/blue_shape_bg"
+        android:gravity="center"
+        android:text="@string/setting_exit"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_title" />
 
 </LinearLayout>

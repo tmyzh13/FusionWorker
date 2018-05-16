@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.bm.fusionworker.fragment.InspectioningActivity">
+
+    <com.bm.fusionworker.weights.NavBar
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_work_list_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <View
+                    android:layout_width="@dimen/dp_10"
+                    android:layout_height="@dimen/dp_10"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/blue_hellow_circle_bg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="@string/inspection_list_details" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableRight="@mipmap/expand"
+                    android:gravity="end"
+                    android:hint="@string/see_inspection_list_details" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_5"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <View
+                    android:layout_width="@dimen/dp_10"
+                    android:layout_height="@dimen/dp_10"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/blue_hellow_circle_bg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="@string/inspection_info" />
+
+            </LinearLayout>
+
+            <View style="@style/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <LinearLayout style="@style/lable_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/arrive_time" />
+
+                    <TextView
+                        android:id="@+id/arrive_time_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+
+                <View style="@style/line" />
+
+                <LinearLayout style="@style/lable_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/onsite_person" />
+
+                    <TextView
+                        android:id="@+id/onsite_person_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:drawableRight="@mipmap/expand"
+                        android:gravity="end"
+                        android:hint="@string/please_chose" />
+                </LinearLayout>
+
+                <View style="@style/line" />
+
+                <LinearLayout style="@style/lable_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/onsite_des" />
+
+                    <TextView
+                        android:id="@+id/onsite_des_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:drawableRight="@mipmap/expand"
+                        android:gravity="end"
+                        android:hint="@string/onsite_des" />
+                </LinearLayout>
+
+                <View style="@style/line" />
+
+                <LinearLayout style="@style/lable_normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/site_picture" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/lable_normal">
+
+                    <com.corelibs.views.NoScrollingGridView
+                        android:id="@+id/gv_pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_30"
+                        android:layout_marginTop="15dp"
+                        android:cacheColorHint="@color/transparent"
+                        android:horizontalSpacing="15dp"
+                        android:listSelector="@color/transparent"
+                        android:numColumns="4"
+                        android:scrollbars="none"
+                        android:verticalSpacing="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_5"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <View
+                    android:layout_width="@dimen/dp_10"
+                    android:layout_height="@dimen/dp_10"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/blue_hellow_circle_bg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="@string/is_find_fault" />
+
+                <Switch
+                    android:id="@+id/sw_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_10"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:id="@+id/layout_fault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <View
+                        android:layout_width="@dimen/dp_10"
+                        android:layout_height="@dimen/dp_10"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/blue_hellow_circle_bg" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/fault_register" />
+                </LinearLayout>
+
+                <View style="@style/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <LinearLayout style="@style/lable_normal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/device_num" />
+
+                        <TextView
+                            android:id="@+id/device_num_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:drawableRight="@mipmap/expand"
+                            android:gravity="end"
+                            android:hint="@string/hint_device_num" />
+                    </LinearLayout>
+
+                    <View style="@style/line" />
+
+                    <LinearLayout style="@style/lable_normal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/fault_type" />
+
+                        <TextView
+                            android:id="@+id/fault_type_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:drawableRight="@mipmap/expand"
+                            android:gravity="end"
+                            android:hint="@string/please_chose" />
+                    </LinearLayout>
+
+                    <View style="@style/line" />
+
+                    <LinearLayout style="@style/lable_normal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/urgent_level" />
+
+                        <TextView
+                            android:id="@+id/urgent_level_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:drawableRight="@mipmap/expand"
+                            android:gravity="end"
+                            android:hint="@string/please_chose" />
+                    </LinearLayout>
+
+                    <View style="@style/line" />
+
+                    <LinearLayout style="@style/lable_normal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/fault_des" />
+
+                        <TextView
+                            android:id="@+id/fault_des_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:drawableRight="@mipmap/expand"
+                            android:gravity="end"
+                            android:hint="@string/fault_des" />
+                    </LinearLayout>
+
+                    <View style="@style/line" />
+
+                    <LinearLayout style="@style/lable_normal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/fault_picture" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/lable_normal">
+
+                        <com.corelibs.views.NoScrollingGridView
+                            android:id="@+id/fault_gv_pic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp_30"
+                            android:layout_marginTop="15dp"
+                            android:cacheColorHint="@color/transparent"
+                            android:horizontalSpacing="15dp"
+                            android:listSelector="@color/transparent"
+                            android:numColumns="4"
+                            android:scrollbars="none"
+                            android:verticalSpacing="15dp" />
+                    </LinearLayout>
+
+                    <View style="@style/line" />
+
+                    <LinearLayout style="@style/lable_normal">
+
+                        <TextView
+                            android:id="@+id/register_more_fault_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawableLeft="@drawable/blue_hellow_circle_bg"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center"
+                            android:text="@string/register_more_fault" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_140"
+                android:background="@color/line">
+
+                <TextView
+                    android:id="@+id/submit_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:background="@drawable/ll_cancel_bg"
+                    android:gravity="center"
+                    android:text="@string/action_submit"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

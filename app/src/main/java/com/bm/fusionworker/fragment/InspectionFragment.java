@@ -12,8 +12,10 @@ import com.bm.fusionworker.R;
 import com.corelibs.base.BaseFragment;
 import com.corelibs.base.BasePresenter;
 
+import butterknife.OnClick;
+
 /**
- * 巡检 Fragment
+ * 巡检地图 Fragment
  */
 public class InspectionFragment extends BaseFragment {
 
@@ -30,6 +32,11 @@ public class InspectionFragment extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
 
+    }
+
+    @OnClick(R.id.tv_list)
+    public void goList() {
+        startActivity(HomeListActivity.getLauncher(getContext()));
     }
 
     @Override

@@ -7,10 +7,12 @@
     android:background="@color/line"
     android:orientation="vertical"
     tools:context="com.bm.fusionworker.views.mine.UserInfoActivity">
+
     <com.bm.fusionworker.weights.NavBar
         android:id="@+id/nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,339 +22,287 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:paddingBottom="@dimen/dp_10"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/dp_10">
+            <LinearLayout
+                android:id="@+id/layout_portrait"
+                style="@style/item_layout_simple"
+                android:layout_height="70dp"
+                android:background="@drawable/list_selector">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    style="@style/textview"
+                    android:layout_weight="1"
                     android:text="@string/head_iv" />
 
-                <com.bm.fusionworker.weights.CircleImageView
-                    android:id="@+id/head_iv"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/man_head" />
+                <com.corelibs.views.roundedimageview.CircleImageView
+                    android:id="@+id/iv_user_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@mipmap/ic_launcher_round" />
+            </LinearLayout>
 
-            </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/line" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_48"
-                android:layout_marginTop="@dimen/dp_20"
-                android:background="@color/white"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/name" />
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/black_bg_color" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/line" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_48"
-                android:background="@color/white"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/gender" />
-
-                <TextView
-                    android:id="@+id/gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/black_bg_color" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/line" />
+            <ImageView
+                style="@style/view_line"
+                android:layout_height="@dimen/dp_13" />
 
             <LinearLayout
-                android:id="@+id/hw_ll"
+                android:id="@+id/layout_nick"
+                style="@style/item_layout_simple"
+                android:background="@drawable/list_selector">
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_weight="1"
+                    android:text="@string/name" />
+
+                <EditText
+                    android:id="@+id/et_nick"
+                    style="@style/textview"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/write_name"
+                    android:lines="1"
+                    android:textColor="@color/app_blue" />
+            </LinearLayout>
+
+            <ImageView style="@style/view_line" />
+
+            <LinearLayout
+                android:id="@+id/layout_sex"
+                style="@style/item_layout_simple"
+                android:background="@drawable/list_selector">
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_weight="1"
+                    android:text="@string/gender" />
+
+
+                <TextView
+                    android:id="@+id/tv_sex"
+                    style="@style/textview"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/app_blue" />
+            </LinearLayout>
+
+            <ImageView style="@style/view_line" />
+
+            <LinearLayout
+                android:id="@+id/layout_hw1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_48"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    style="@style/item_layout_simple"
+                    android:background="@drawable/list_selector">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        style="@style/textview"
+                        android:layout_weight="1"
                         android:text="@string/department" />
 
-                    <TextView
-                        android:id="@+id/department"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/black_bg_color" />
-                </RelativeLayout>
+                    <EditText
+                        android:id="@+id/et_department"
+                        style="@style/textview"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="@string/write_department"
+                        android:lines="1"
+                        android:textColor="@color/app_blue" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:background="@color/line" />
+                <ImageView style="@style/view_line" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_48"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    style="@style/item_layout_simple"
+                    android:background="@drawable/list_selector">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        style="@style/textview"
+                        android:layout_weight="1"
                         android:text="@string/phone" />
 
-                    <TextView
-                        android:id="@+id/write_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:drawablePadding="@dimen/dp_5"
-                        android:drawableRight="@mipmap/expand"
-                        android:hint="@string/write_phone" />
-                </RelativeLayout>
+                    <EditText
+                        android:id="@+id/et_phone"
+                        style="@style/textview"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="@string/write_phone"
+                        android:lines="1"
+                        android:textColor="@color/app_blue" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:background="@color/line" />
+                <ImageView style="@style/view_line" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_48"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    style="@style/item_layout_simple"
+                    android:background="@drawable/list_selector">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        style="@style/textview"
+                        android:layout_weight="1"
                         android:text="@string/worker_number" />
 
-                    <TextView
-                        android:id="@+id/worker_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/black_bg_color" />
-                </RelativeLayout>
+                    <EditText
+                        android:id="@+id/et_worker_number"
+                        style="@style/textview"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="@string/write_worker_number"
+                        android:lines="1"
+                        android:textColor="@color/app_blue" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:background="@color/line" />
+                <ImageView style="@style/view_line" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_48"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    style="@style/item_layout_simple"
+                    android:background="@drawable/list_selector">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        style="@style/textview"
+                        android:layout_weight="1"
                         android:text="@string/user_type" />
 
-                    <TextView
-                        android:id="@+id/user_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/black_bg_color" />
-                </RelativeLayout>
+                    <EditText
+                        android:id="@+id/et_user_type"
+                        style="@style/textview"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="@string/write_user_type"
+                        android:lines="1"
+                        android:textColor="@color/app_blue" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:background="@color/line" />
+                <ImageView style="@style/view_line" />
+
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_48"
-                android:background="@color/white"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
+            <LinearLayout
+                android:id="@+id/layout_email"
+                style="@style/item_layout_simple"
+                android:background="@drawable/list_selector">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    style="@style/textview"
+                    android:layout_weight="1"
                     android:text="@string/email" />
 
-                <TextView
-                    android:id="@+id/write_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:drawablePadding="@dimen/dp_5"
-                    android:drawableRight="@mipmap/expand"
-                    android:hint="@string/write_email" />
-            </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/line" />
+                <EditText
+                    android:id="@+id/tv_email"
+                    style="@style/textview"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:hint="填写邮箱"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:textColor="@color/app_blue" />
+            </LinearLayout>
+
+            <ImageView style="@style/view_line" />
 
             <LinearLayout
                 android:id="@+id/w3_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_48"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    style="@style/item_layout_simple"
+                    android:background="@drawable/list_selector">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        style="@style/textview"
+                        android:layout_weight="1"
                         android:text="@string/w3account" />
 
-                    <TextView
-                        android:id="@+id/w3account"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/black_bg_color" />
-                </RelativeLayout>
+                    <EditText
+                        android:id="@+id/et_w3"
+                        style="@style/textview"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:gravity="right|center_vertical"
+                        android:hint="@string/write_w3account"
+                        android:lines="1"
+                        android:textColor="@color/app_blue" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:background="@color/line" />
+                <ImageView style="@style/view_line" />
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="visible"
-                android:id="@+id/birthday_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:id="@+id/layout_birthday"
+                style="@style/item_layout_simple"
+                android:background="@drawable/list_selector">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_48"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin">
+                <TextView
+                    style="@style/textview"
+                    android:layout_weight="1"
+                    android:text="@string/birthday" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="@string/birthday" />
-
-                    <TextView
-                        android:id="@+id/birthday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/black_bg_color" />
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:background="@color/line" />
+                <TextView
+                    android:id="@+id/tv_birthday"
+                    style="@style/textview"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/write_birthday"
+                    android:textColor="@color/app_blue" />
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_48"
-                android:background="@color/white"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
+            <ImageView style="@style/view_line" />
+
+            <LinearLayout
+                android:id="@+id/layout_address"
+                style="@style/item_layout_simple"
+                android:background="@drawable/list_selector">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    style="@style/textview"
+                    android:layout_weight="1"
                     android:text="@string/address" />
 
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/black_bg_color" />
-            </RelativeLayout>
+                <EditText
+                    android:id="@+id/tv_address"
+                    style="@style/textview"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/write_address"
+                    android:lines="1"
+                    android:textColor="@color/app_blue" />
+            </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/line" />
+            <ImageView style="@style/view_line" />
 
             <TextView
-                android:id="@+id/commit_tv"
+                android:id="@+id/commit_userinfo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_48"
+                android:layout_marginBottom="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/dp_30"
@@ -360,7 +310,8 @@
                 android:gravity="center"
                 android:text="@string/action_submit"
                 android:textColor="@color/text_white"
-                android:textSize="@dimen/text_title" />
+                android:textSize="@dimen/text_title"
+                android:visibility="visible" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

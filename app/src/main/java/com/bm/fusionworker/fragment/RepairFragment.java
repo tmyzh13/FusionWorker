@@ -1,12 +1,10 @@
 package com.bm.fusionworker.fragment;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.bm.fusionworker.R;
 import com.corelibs.base.BaseFragment;
 import com.corelibs.base.BasePresenter;
 
-import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -14,15 +12,8 @@ import butterknife.OnClick;
  */
 public class RepairFragment extends BaseFragment {
 
-    @Bind(R.id.tv_map)
-    TextView mapTv;
-    @Bind(R.id.tv_list)
-    TextView listTv;
-
     @Override
-    public void goLogin() {
-
-    }
+    public void goLogin() {}
 
     @Override
     protected int getLayoutId() {
@@ -34,7 +25,8 @@ public class RepairFragment extends BaseFragment {
     }
 
     @OnClick(R.id.tv_list)
-    public void choseMap(){
+    public void goList(){
+        startActivity(HomeListActivity.getLauncher(getContext()));
     }
     @Override
     protected BasePresenter createPresenter() {

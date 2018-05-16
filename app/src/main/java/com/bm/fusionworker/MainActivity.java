@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import com.bm.fusionworker.fragment.RepairFragment;
 import com.bm.fusionworker.views.mine.PersonalCenterActivity;
 import com.corelibs.base.BaseActivity;
 import com.corelibs.base.BasePresenter;
+import com.corelibs.common.AppManager;
 
 import butterknife.Bind;
 
@@ -35,8 +37,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     TextView inspection_tv;
     @Bind(R.id.line2)
     View line2;
-    @Bind(R.id.content)
-    FrameLayout content;
 
     private RepairFragment repairFragment;
     private InspectionFragment inspectionFragment;
@@ -135,6 +135,37 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * 双击两次返回键退出应用
+     */
+    private boolean isBackPressed = false;//判断是否已经点击过一次回退键
+
+    private void doublePressBackToast() {
+        if (!isBackPressed) {
+            isBackPressed = true;
+            showToast(getString(R.string.double_press_for_exit));
+        } else {
+            AppManager.getAppManager().finishAllActivity();
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressed = false;
+            }
+        }, 2000);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            doublePressBackToast();
+            return true;
+        } else {
+            return super.onKeyUp(keyCode, event);
         }
     }
 }

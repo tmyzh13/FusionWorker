@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.bm.fusionworker.R;
 import com.bm.fusionworker.model.beans.ChosenImageFile;
 import com.bm.fusionworker.utils.Tools;
+import com.bm.fusionworker.weights.BigPicActivity;
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.corelibs.utils.adapter.BaseAdapterHelper;
@@ -40,14 +41,14 @@ public class SelectImageAdapter extends QuickAdapter<ChosenImageFile>
     protected void convert(BaseAdapterHelper helper, ChosenImageFile item, final int position) {
         helper.setVisible(R.id.image, item.chosen)
 
-                .setVisible(R.id.head_iv, !item.chosen)
+                .setVisible(R.id.iv_plus, !item.chosen)
                ;
         ImageView image=helper.getView(R.id.image);
-        ImageView iv_plus=helper.getView(R.id.head_iv);
+        ImageView iv_plus=helper.getView(R.id.iv_plus);
 
         int width;
            width = (Tools.getScreenWidth(context)- Tools.dip2px(context,60))/3;
-            iv_plus.setImageResource(R.mipmap.ic_launcher);
+            iv_plus.setImageResource(R.mipmap.plus);
             ViewGroup.LayoutParams  ps = image.getLayoutParams();
             ps.height=width;
             ViewGroup.LayoutParams ps1=iv_plus.getLayoutParams();
@@ -81,13 +82,13 @@ public class SelectImageAdapter extends QuickAdapter<ChosenImageFile>
                 return false;
             }
         });
-//        image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //点击进入大图
-//                context.startActivity(BigPicActivity.getLauncher(context,getChosenImages(),position));
-//            }
-//        });
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //点击进入大图
+                context.startActivity(BigPicActivity.getLauncher(context,getChosenImages(),position));
+            }
+        });
     }
 
     public int getChosenCount() {

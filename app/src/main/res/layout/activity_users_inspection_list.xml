@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    tools:context="com.bm.fusionworker.views.checker.UsersInspectionListActivity">
+
+    <com.bm.fusionworker.weights.NavBar
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout
+        android:id="@+id/ptrLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/nav">
+
+        <com.corelibs.views.ptr.loadmore.widget.AutoLoadMoreListView
+            android:id="@+id/lv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:divider="@color/line"
+            android:dividerHeight="5dp"
+            android:scrollbars="none" />
+
+    </com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout>
+
+    <TextView
+        android:id="@+id/delete_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:background="@drawable/white_shape_bg"
+        android:drawableTop="@drawable/pop_ic_del"
+        android:paddingBottom="@dimen/dp_2"
+        android:paddingLeft="@dimen/dp_30"
+        android:paddingRight="@dimen/dp_30"
+        android:paddingTop="@dimen/dp_2"
+        android:text="@string/delete" />
+</RelativeLayout>

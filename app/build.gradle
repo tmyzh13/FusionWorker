@@ -40,7 +40,6 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
-
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:support-v4:26.0.0-beta1'
     testImplementation 'junit:junit:4.12'
@@ -53,6 +52,8 @@ dependencies {
     configurations.all {
         resolutionStrategy.force 'com.android.support:support-annotations:26.1.0'
     }
+    compile 'com.alibaba:fastjson:1.1.68.android'
+    implementation project(':zxing-android-embedded')
 }
 
 configurations.all {

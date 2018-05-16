@@ -3,29 +3,49 @@ package com.bm.fusionworker.views.mine;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bm.fusionworker.R;
+import com.bm.fusionworker.model.UserHelper;
+import com.bm.fusionworker.model.beans.ModifyUserInfoRequestBean;
+import com.bm.fusionworker.model.beans.UserBean;
+import com.bm.fusionworker.model.beans.UserInfoBean;
+import com.bm.fusionworker.model.interfaces.UserInfoView;
+import com.bm.fusionworker.presenter.UserInfoPresenter;
 import com.bm.fusionworker.utils.GlideImageLoader;
+import com.bm.fusionworker.utils.Tools;
 import com.bm.fusionworker.weights.NavBar;
+import com.bm.fusionworker.weights.UserHeadPhoteDialog;
+import com.bm.fusionworker.weights.UserSexDialog;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.corelibs.base.BaseActivity;
 import com.corelibs.base.BasePresenter;
 import com.corelibs.utils.PreferencesHelper;
 import com.corelibs.utils.ToastMgr;
+import com.corelibs.views.roundedimageview.CircleImageView;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -33,7 +53,11 @@ import com.lzy.imagepicker.view.CropImageView;
 
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -41,51 +65,55 @@ import retrofit2.http.PUT;
 
 import static com.bm.fusionworker.views.mine.ImageActivity.REQUEST_PERMISSION_ALL;
 
-public class UserInfoActivity extends BaseActivity {
+public class UserInfoActivity extends BaseActivity <UserInfoView, UserInfoPresenter> implements UserInfoView, View.OnClickListener  {
 
     public static final String tag = UserInfoActivity.class.getSimpleName();
     private Context context = UserInfoActivity.this;
-    private final int REQUEST_CODE_SELECT_CAMERA = 0x0001;
-    private final String USER_PHOTO_PATH = "";
 
     @Bind(R.id.nav)
     NavBar navBar;
-    @Bind(R.id.head_iv)
-    ImageView head_iv;
 
     //普通工号
-    @Bind(R.id.name)
-    TextView nameTv;
-    @Bind(R.id.gender)
-    TextView genderTv;
-    @Bind(R.id.write_email)
-    TextView write_email_Tv;
-    @Bind(R.id.birthday_ll)
-    LinearLayout birthday_ll;
-    @Bind(R.id.birthday)
-    TextView birthdayTv;
-    @Bind(R.id.address)
-    TextView addressTv;
+    @Bind(R.id.iv_user_icon)
+    CircleImageView ivUserIcon;
+    @Bind(R.id.layout_portrait)
+    LinearLayout layoutPortrait;
+    @Bind(R.id.et_nick)
+    EditText etNick;
+    @Bind(R.id.layout_nick)
+    LinearLayout layoutNick;
+    @Bind(R.id.tv_sex)
+    TextView tvSex;
+    @Bind(R.id.layout_sex)
+    LinearLayout layoutSex;
+    @Bind(R.id.tv_email)
+    EditText tvEmail;
+    @Bind(R.id.layout_email)
+    LinearLayout layoutEmail;
+    @Bind(R.id.tv_birthday)
+    TextView tvBirthday;
+    @Bind(R.id.layout_birthday)
+    LinearLayout layoutBirthday;
+    @Bind(R.id.tv_address)
+    EditText tvAddress;
+    @Bind(R.id.layout_address)
+    LinearLayout layoutAddress;
+    @Bind(R.id.commit_userinfo)
+    TextView commitUserinfo;
     //华为工号
-    @Bind(R.id.hw_ll)
-    LinearLayout hw_ll;
-    @Bind(R.id.department)
-    TextView departmentTv;
-    @Bind(R.id.write_phone)
-    TextView write_phone_tv;
-    @Bind(R.id.worker_number)
-    TextView worker_number_tv;
-    @Bind(R.id.user_type)
-    TextView user_type_tv;
-    @Bind(R.id.w3_ll)
-    LinearLayout w3_ll;
-    @Bind(R.id.w3account)
-    TextView w3accountTv;
 
-    private TextView cameraTv, galleryTv, cancelTv;
+    private UserInfoPresenter presenter;
+    private UserHeadPhoteDialog userHeadPhoteDialog;
+    private UserSexDialog userSexDialog;
+
+    private final int REQUEST_CODE_SELECT_CAMERA = 0x0001;
+    private final String USER_PHOTO_PATH = "";
     private boolean isHwUser = false;
-    private boolean isGoToCarema = true;
     private String uploadImageName = "";
+    private long lastInputTime = 0;
+    private MyHandler myHandler = new MyHandler(this);
+    private boolean isGoToCarema = true;
+    private String datePickerContent = "";
 
     public static Intent getLauncher(Context context) {
         Intent intent = new Intent(context, UserInfoActivity.class);
@@ -105,18 +133,16 @@ public class UserInfoActivity extends BaseActivity {
     protected void init(Bundle savedInstanceState) {
         navBar.setColorRes(R.color.app_blue);
         navBar.setNavTitle(getString(R.string.user_info));
-        initView();
+
         initImagePicker();
+        showLoading();
+        presenter = getPresenter();
+        presenter.doGetUserInfoRequest();
     }
 
-    private void initView() {
-        if (isHwUser) {//华为账号
-            birthday_ll.setVisibility(View.GONE);
-        } else {
-            birthday_ll.setVisibility(View.VISIBLE);
-            hw_ll.setVisibility(View.GONE);
-            w3_ll.setVisibility(View.GONE);
-        }
+    @Override
+    protected UserInfoPresenter createPresenter() {
+        return new UserInfoPresenter();
     }
 
     private void initImagePicker(){
@@ -133,65 +159,244 @@ public class UserInfoActivity extends BaseActivity {
         imagePicker.setOutPutX(400);                         //保存文件的宽度。单位像素
         imagePicker.setOutPutY(400);                        //保存文件的高度。单位像素
     }
-    /**
-     * 点击头像
-     */
-    @OnClick(R.id.head_iv)
-    public void updateHeadIv() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.chose_image_dialog, null);
-        builder.setView(view);
-        cameraTv = view.findViewById(R.id.camera);
-        galleryTv = view.findViewById(R.id.gallery);
-        cancelTv = view.findViewById(R.id.cancel);
-        final Dialog dialog = builder.create();
-        dialog.setCancelable(true);
-        dialog.show();
-        cameraTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                isGoToCarema = true;
-                boolean isGo = checkPermisson();
-                if (!isGo) {
-                    return;
-                }
-                Intent intent = new Intent(UserInfoActivity.this, ImageActivity.class);
-                intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS, true); // 是否是直接打开相机
-                startActivityForResult(intent, REQUEST_CODE_SELECT_CAMERA);
-            }
-        });
-        galleryTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                isGoToCarema = false;
-                boolean isGo1 = checkPermisson();
-                if (!isGo1) {
-                    return;
-                }
-                //从相册选取
-                Intent intent1 = new Intent(UserInfoActivity.this, ImageActivity.class);
-                startActivityForResult(intent1, REQUEST_CODE_SELECT_CAMERA);
-            }
-        });
-        cancelTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastMgr.show(R.string.action_cancel);
-                dialog.dismiss();
-            }
-        });
+
+
+    //获取已输入的个人信息
+    private ModifyUserInfoRequestBean getUserInfoRequest() {
+        //姓名不能为空
+        if(Tools.isNull(etNick.getText().toString())){
+            showToast(getString(R.string.name_cannot_null));
+            return null;
+        }
+        //性别不能为空
+        if(Tools.isNull(tvSex.getText().toString())) {
+            showToast(getString(R.string.sex_cannot_null));
+            return null;
+        }
+        //生日不能为空
+        if(Tools.isNull(tvBirthday.getText().toString())) {
+            showToast("请选择出生日期");
+            return null;
+        }
+       /* if(Tools.isNull(tvEmail.getText().toString())) {
+            showToast("邮箱不能为空！");
+        }*/
+
+        ModifyUserInfoRequestBean bean = new ModifyUserInfoRequestBean();
+        if(!Tools.isNull(uploadImageName)) {
+            bean.photoUrl = uploadImageName;
+        }
+        bean.name = etNick.getText().toString();
+        bean.sexName = tvSex.getText().toString();
+        bean.email = tvEmail.getText().toString();
+        bean.birth = tvBirthday.getText().toString();
+        bean.address = tvAddress.getText().toString();
+        return bean;
     }
 
-    private boolean checkPermisson() {
+    @Override
+    public void onGetUserInfoSuccess(UserInfoBean userInfoBean) {
+        hideLoading();
+        // 更新界面
+
+        //头像
+        SimpleTarget<GlideDrawable> target = new SimpleTarget<GlideDrawable>() {
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                ivUserIcon.setImageDrawable(resource);
+            }
+
+            @Override
+            public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                super.onLoadFailed(e, errorDrawable);
+                String path = PreferencesHelper.getData(USER_PHOTO_PATH);
+                if (!TextUtils.isEmpty(path)) {
+                    File file = new File(path);
+                    Glide.with(UserInfoActivity.this).load(Uri.fromFile(file))
+                            .error(R.mipmap.ic_launcher_round).into(ivUserIcon);
+                }
+            }
+        };
+        if (!TextUtils.isEmpty(userInfoBean.photoUrl)) {
+            Glide.with(this).load(userInfoBean.photoUrl).into(target);
+        }
+
+        //保存用户信息
+        UserBean userBean = UserHelper.getSavedUser();
+
+        userBean.photoUrl = userInfoBean.photoUrl;
+        userBean.nickName = userInfoBean.name;
+        userBean.sex = userInfoBean.sex;
+        userBean.sexName = userInfoBean.sexName;
+        userBean.email = userInfoBean.email;
+        userBean.birthDay = userInfoBean.birth;
+        userBean.address = userInfoBean.address;
+
+        UserHelper.saveUser(userBean);
+
+        // 姓名
+        if (!TextUtils.isEmpty(userBean.nickName)) {
+            etNick.setText(userBean.nickName);
+        }
+        //性别 1为男，2为女，0为未知
+        tvSex.setText(userBean.sexName);
+
+        // 邮箱
+        if (!TextUtils.isEmpty(userBean.email)) {
+            tvEmail.setText(userBean.email);
+        }
+        // 出生日期
+        if (!TextUtils.isEmpty(userInfoBean.birth)) {
+            tvBirthday.setText(userInfoBean.birth);
+        }
+        // 地址
+        if (!TextUtils.isEmpty(userInfoBean.address)) {
+            tvAddress.setText(userInfoBean.address);
+        }
+    }
+
+    @Override
+    public void onGetUsrInfoFail() {
+        hideLoading();
+        Toast.makeText(this, getString(R.string.user_info_get_fail), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onModifyUserInfoFail() {
+        hideLoading();
+        Toast.makeText(this, getString(R.string.user_info_modify_fail), Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onModifySuccess() {
+        hideLoading();
+        Toast.makeText(this, getString(R.string.user_info_modify_success), Toast.LENGTH_SHORT).show();
+        startActivity(PersonalCenterActivity.getLauncher(UserInfoActivity.this));
+        // 提交成功再请求获取用户信息接口
+        //presenter.doGetUserInfoRequest();
+    }
+
+    @Override
+    public void onUploadPhotoSuccess(String imgUrl) {
+        uploadImageName =imgUrl;
+        UserBean userBean = UserHelper.getSavedUser();
+        if(userBean != null) {
+            userBean.photoUrl = uploadImageName;
+            UserHelper.saveUser(userBean);
+            //通知主页去更新头像
+            //RxBus.getDefault().send(new Object(), Constant.REFRESH_MAIN_HEAD_PHOTO);
+        }
+    }
+
+    @Override
+    public void onUploadPhotoFail() {
+        showToast(getString(R.string.upload_photo_error));
+    }
+
+
+    @OnClick({R.id.tv_sex, R.id.tv_birthday, R.id.commit_userinfo,R.id.iv_user_icon})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_user_icon:
+                //头像选择
+                if(userHeadPhoteDialog == null ){
+                    userHeadPhoteDialog = new UserHeadPhoteDialog(UserInfoActivity.this);
+                }
+                userHeadPhoteDialog.show();
+                userHeadPhoteDialog.setCameraListener(this);
+                userHeadPhoteDialog.setPhotoListener(this);
+                break;
+            case R.id.tv_sex:
+                // 性别选择单选框
+                if(userSexDialog == null ) {
+                    userSexDialog = new UserSexDialog(this);
+                }
+                if(!userSexDialog.isShowing()) {
+                    userSexDialog.show();
+                    userSexDialog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            switch (view.getId()){
+                                case R.id.tv_man:
+                                    tvSex.setText(getString(R.string.man));
+                                    userSexDialog.dismiss();
+                                    break;
+                                case R.id.tv_woman:
+                                    tvSex.setText(getString(R.string.woman));
+                                    userSexDialog.dismiss();
+                                    break;
+                                case R.id.tv_secret:
+                                    tvSex.setText(getString(R.string.secret));
+                                    userSexDialog.dismiss();
+                                    break;
+                                case R.id.tv_cancel:
+                                    userSexDialog.dismiss();
+                                    break;
+                            }
+                        }
+                    });
+                }
+                break;
+            case R.id.tv_birthday:
+                // 生日日期选择 上传要求格式：1993.04.05
+                showTimePickerDialog();
+                break;
+            case R.id.commit_userinfo:
+                //验证邮箱
+                if (!isEmailVailid()) {
+                    return;
+                }
+                // 修改个人信息
+                ModifyUserInfoRequestBean userInfoRequest = getUserInfoRequest();
+                if(userInfoRequest != null) {
+                    showLoading();
+                    presenter.doModifyUserInfo(userInfoRequest);
+                }
+                break;
+            case R.id.tv_camera:
+                isGoToCarema = true;
+                userHeadPhoteDialog.dismiss();
+                boolean isGo = checkPermisson();
+                if(!isGo) return;
+                //相机拍照
+                Intent intent = new Intent(this, ImageActivity.class);
+                intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS,true); // 是否是直接打开相机
+                startActivityForResult(intent, REQUEST_CODE_SELECT_CAMERA);
+                break;
+            case R.id.tv_photo:
+                isGoToCarema = false;
+                userHeadPhoteDialog.dismiss();
+                boolean isGo1 = checkPermisson();
+                if(!isGo1) return;
+                //从相册选取
+                Intent intent1 = new Intent(this, ImageActivity.class);
+                startActivityForResult(intent1, REQUEST_CODE_SELECT_CAMERA);
+
+                break;
+        }
+    }
+
+    private boolean isEmailVailid() {
+        if (null == tvEmail.getText() || tvEmail.getText().toString().isEmpty()) {
+            showToast("邮箱不能为空！");
+            return false;
+        }
+        Pattern pattern = Pattern.compile(".+@.+\\.[a-z]+");
+        Matcher matcher = pattern.matcher(tvEmail.getText().toString());
+        boolean result = matcher.matches();
+        setEmail(result);
+        return result;
+    }
+
+    private boolean checkPermisson(){
         if (!(checkPermission(Manifest.permission.CAMERA)) || !(checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_ALL);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_ALL);
             return false;
         }
         return true;
     }
+
     public boolean checkPermission(@NonNull String permission) {
         return ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
     }
@@ -209,10 +414,12 @@ public class UserInfoActivity extends BaseActivity {
                     Intent intent = new Intent(this, ImageActivity.class);
                     intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS,true); // 是否是直接打开相机
                     startActivityForResult(intent, REQUEST_CODE_SELECT_CAMERA);
+                    userHeadPhoteDialog.dismiss();
                 } else {
                     //从相册选取
                     Intent intent1 = new Intent(this, ImageActivity.class);
                     startActivityForResult(intent1, REQUEST_CODE_SELECT_CAMERA);
+                    userHeadPhoteDialog.dismiss();
                 }
             }
 
@@ -228,25 +435,116 @@ public class UserInfoActivity extends BaseActivity {
                 if(images != null && images.size() != 0) {
                     File file = new File(images.get(0).path);
                     Uri uri = Uri.fromFile(file);
-                    Log.e(tag,"uri: " + uri.toString() + " .. " + file.exists());
+                    Log.e("zw","log .to string : " + uri.toString() + " .. " + file.exists());
                     //上传名称
                     String[] imgPath = uri.toString().split("/");
                     uploadImageName = "img/" + imgPath[imgPath.length - 1];
-                    Log.e(tag,"uploadImageName: " + uploadImageName);
+                    Log.e("zw","log .to string : " + uploadImageName);
 
                     Glide.with(this).load(Uri.fromFile(file))
-                            .into(head_iv);
+                            .into(ivUserIcon);
                     PreferencesHelper.saveData(USER_PHOTO_PATH,images.get(0).path);
-                    //更新图片
-//                    presenter.uploadImage(file);
+                    presenter.uploadImage(file);
                 }
             } else {
-                Toast.makeText(this, R.string.data_null, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
             }
         }
     }
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
+
+    private void showTimePickerDialog(){
+        View popupView = LayoutInflater.from(UserInfoActivity.this).inflate(R.layout.double_date_picker,null);
+        DatePicker start_time,end_time;
+        TextView tv_start,tv_end;
+        start_time = (DatePicker) popupView.findViewById(R.id.start_time);
+        end_time = (DatePicker) popupView.findViewById(R.id.end_time);
+        tv_start = (TextView) popupView.findViewById(R.id.tv_start_time);
+        tv_end = (TextView) popupView.findViewById(R.id.tv_end_time);
+
+        end_time.setVisibility(View.GONE);
+        tv_end.setVisibility(View.GONE);
+        tv_start.setVisibility(View.GONE);
+
+        int year,monthOfYear,dayOfMonth;
+        if (TextUtils.isEmpty(tvBirthday.getText())) {
+            Calendar calendar = Calendar.getInstance();
+            year=calendar.get(Calendar.YEAR);
+            monthOfYear=calendar.get(Calendar.MONTH);
+            dayOfMonth=calendar.get(Calendar.DAY_OF_MONTH);
+            tvBirthday.setText(getDateFromYMD(year,monthOfYear,dayOfMonth));
+        } else {
+            String[] date = tvBirthday.getText().toString().split("-|\\.");
+            year = Integer.parseInt(date[0]);
+            monthOfYear = Integer.parseInt(date[1]) - 1;
+            dayOfMonth = Integer.parseInt(date[2]);
+        }
+
+        start_time.init(year, monthOfYear, dayOfMonth, new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
+                datePickerContent = getDateFromYMD(i,i1,i2);
+            }
+        });
+        android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this)
+                .setView(popupView)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (!Tools.isNull(datePickerContent)) {
+                            tvBirthday.setText(datePickerContent);
+                            datePickerContent = "";
+                        }
+                    }
+                }).create();
+        dialog.show();
+    }
+
+    private String getDateFromYMD(int i,int i1,int i2){
+        String str = i + ".";
+        if (i1 < 9){
+            str = str + "0"+(i1+1)+".";
+        } else {
+            str = str + (i1+1) +".";
+        }
+        if (i2 < 10) {
+            str = str + "0" + i2;
+        } else {
+            str = str + i2;
+        }
+        ;    return str;
+    }
+
+
+    private void setEmail(boolean isRight) {
+        if(!isRight) {
+            tvEmail.setText("");
+            myHandler.removeCallbacksAndMessages(null);
+            showToast(getString(R.string.wrong_email_address));
+        }
+    }
+
+    private static class MyHandler extends Handler {
+
+        WeakReference<UserInfoActivity> userInfoActivity;
+
+        public MyHandler(UserInfoActivity activity){
+            userInfoActivity = new WeakReference<UserInfoActivity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == 123) {
+                String mail = (String) msg.obj;
+                Pattern pattern = Pattern.compile(".+@.+\\.[a-z]+");
+                Matcher matcher = pattern.matcher(mail);
+
+                if(matcher.matches()) {
+                    userInfoActivity.get().setEmail(true);
+                }else {
+                    userInfoActivity.get().setEmail(false);
+                }
+            }
+        }
     }
 }

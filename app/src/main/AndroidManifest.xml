@@ -71,10 +71,57 @@
             android:name="com.amap.api.v2.apikey"
             android:value="0a26d825f50c45a2182e43976c9238dc" />
         <!-- 定位需要的服务 -->
-        <service android:name="com.amap.api.location.APSService" />
+        <!-- <service android:name="com.amap.api.location.APSService" /> -->
         <activity
             android:name=".fragment.HomeListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragment.RepairItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragment.InspectionItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.mine.RefundHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragment.RepairingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".weights.BigPicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragment.InspectioningActivity"
+            android:screenOrientation="portrait" />
+
+         <activity
+         android:name=".MainCheckerActivity"
+         android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.CreatePatrolPlanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.NotAcceptanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.AcceptWorkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.ChargeOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.ChargeInputNumberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.ChargeCaptureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.UsersInspectionListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.checker.PileStatusActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.checker.GuildingActivity"></activity>
     </application>
 
 </manifest>

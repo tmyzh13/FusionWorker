@@ -338,7 +338,6 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 getCode();
                 break;
             case R.id.login_tv:
-                startActivity(UserInfoActivity.getLauncher(context));
                 if (!isRegister) {
                     //手机号密码登录
                     if (TextUtils.isEmpty(phoneNumberEt.getText().toString().trim()) || !Tools.isChinaPhoneLegal(phoneNumberEt.getText().toString().trim())) {
