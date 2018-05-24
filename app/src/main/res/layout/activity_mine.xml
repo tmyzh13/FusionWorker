@@ -293,7 +293,7 @@
                     android:gravity="right|center_vertical"
                     android:hint="@string/write_address"
                     android:lines="1"
-                    android:textColor="@color/app_blue" />
+                    android:textColor="@color/btn_blue" />
             </LinearLayout>
 
             <ImageView style="@style/view_line" />

@@ -13,33 +13,25 @@
         android:id="@+id/nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <RelativeLayout
-        android:background="@drawable/msg_item_press_bg"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:background="@color/text_white">
         <EditText
-            android:id="@+id/feedback_text"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="fill_parent"
-            android:layout_height="180dp"
+            android:id="@+id/edit_suggestion"
+            android:layout_width="match_parent"
+            android:minHeight="@dimen/dp_200"
+            android:layout_height="wrap_content"
             android:gravity="top"
-            android:background="@drawable/bg_edittext_default"
-            android:maxLength="150"
-            android:textSize="14dp"/>
-
-        <TextView
-            android:id="@+id/feedback_text_show_num"
-            android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginRight="18dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/feedback_text"
-            android:textSize="14dp"/>
-
-    </RelativeLayout>
+            android:background="@null"
+            android:padding="@dimen/dp_8"
+            android:inputType="textMultiLine"
+            android:textSize="15sp"
+            android:maxLength="256"
+            android:hint="@string/suggestion_yours" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/submit_view"

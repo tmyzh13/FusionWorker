@@ -13,6 +13,7 @@
         android:layout_height="wrap_content" />
 
     <com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout
+        android:clickable="true"
         android:id="@+id/ptrLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,11 +38,12 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/dp_30"
-        android:background="@drawable/white_shape_bg"
+        android:background="@drawable/shadow_white_shape_bg"
         android:drawableTop="@drawable/pop_ic_del"
         android:paddingBottom="@dimen/dp_2"
         android:paddingLeft="@dimen/dp_30"
         android:paddingRight="@dimen/dp_30"
         android:paddingTop="@dimen/dp_2"
-        android:text="@string/delete" />
+        android:text="@string/delete"
+        android:visibility="gone" />
 </RelativeLayout>

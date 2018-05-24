@@ -1,7 +1,7 @@
 package com.bm.fusionworker.constants;
 
 /**
- * 一些用于记录的关键字
+ * 一些用于记录的关键字，以实际情况定义或更改
  * Created by john on 2017/11/7.
  */
 
@@ -45,4 +45,12 @@ public class Constant {
     public static final String APPOINTMENT_TIME_OUT="appointment_time_out";
     //充电时间
     public static final String CHARGING_TIME="charge_time";
+
+    //导航刷新自己的位置
+    public static final String REFRESH_LOCATION="refresh_location";
+    //默认筛选距离 这里测试设置500
+    public static final double DEFAULT_DISTANCE=10000;
+
+    //更改头像后刷新头像信息
+    public static final String REFRESH_MAIN_HEAD_PHOTO = "refresh_main_head_photo";
 }

@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bm.fusionworker.R;
+import com.bm.fusionworker.constants.Constant;
 import com.bm.fusionworker.model.UserHelper;
 import com.bm.fusionworker.model.beans.ModifyUserInfoRequestBean;
 import com.bm.fusionworker.model.beans.UserBean;
@@ -45,6 +46,7 @@ import com.corelibs.base.BaseActivity;
 import com.corelibs.base.BasePresenter;
 import com.corelibs.utils.PreferencesHelper;
 import com.corelibs.utils.ToastMgr;
+import com.corelibs.utils.rxbus.RxBus;
 import com.corelibs.views.roundedimageview.CircleImageView;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -284,8 +286,8 @@ public class UserInfoActivity extends BaseActivity <UserInfoView, UserInfoPresen
         if(userBean != null) {
             userBean.photoUrl = uploadImageName;
             UserHelper.saveUser(userBean);
-            //通知主页去更新头像
-            //RxBus.getDefault().send(new Object(), Constant.REFRESH_MAIN_HEAD_PHOTO);
+//            通知主页去更新头像
+            RxBus.getDefault().send(new Object(), Constant.REFRESH_MAIN_HEAD_PHOTO);
         }
     }
 

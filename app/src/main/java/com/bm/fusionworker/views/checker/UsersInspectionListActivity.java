@@ -3,6 +3,8 @@ package com.bm.fusionworker.views.checker;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,6 +44,24 @@ public class UsersInspectionListActivity extends BaseActivity implements UserIns
     private List<UserInspectionListItemBean> list = new ArrayList<>();
     private UserInspectionListAdapter adapter;
 
+    private boolean isEdite = true;
+    private RadioButton radioButton;
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    //在此处设置此方法后，viewClick里面的view.isSelected()才会生效
+                    listView.getChildAt(msg.arg1).setSelected(true);
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
+    });
+
     public static Intent getLauncher(Context context) {
         Intent intent = new Intent(context, UsersInspectionListActivity.class);
         return intent;
@@ -67,6 +87,9 @@ public class UsersInspectionListActivity extends BaseActivity implements UserIns
         adapter.setListener(this);
         ptr.enableLoading();
         setData();
+        if (isEdite) {
+
+        }
     }
 
     private void setData() {
@@ -82,7 +105,7 @@ public class UsersInspectionListActivity extends BaseActivity implements UserIns
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastMgr.show("点击了=="+position);
+                ToastMgr.show("点击了" + position);
             }
         });
     }
@@ -92,36 +115,75 @@ public class UsersInspectionListActivity extends BaseActivity implements UserIns
         return null;
     }
 
-    private boolean isChecked = false;
     @Override
     public void viewClick(View view) {
+
         switch (view.getId()) {
             case R.id.inspection_person_tv:
-                if (isChecked){
+                if (view.isSelected()) {
                     ToastMgr.show("选择巡检人");
                 }
                 break;
             case R.id.inspection_time_tv:
-                if (isChecked) {
+                if (view.isSelected()) {
                     ToastMgr.show("选择巡检时间");
                 }
                 break;
             case R.id.inspection_cycle_tv:
-                if (isChecked) {
+                if (view.isSelected()) {
                     ToastMgr.show("选择巡检周期");
                 }
+                break;
+            case R.id.rl_title:
+                ToastMgr.show("进入详情");
                 break;
             default:
                 break;
         }
     }
 
-    @Override
-    public void itemChecked(int position) {
-        isChecked = true;
+    @OnClick(R.id.tv_appointment)
+    public void down() {
+        if (isEdite) {
+            tv_appointment.setText(getString(R.string.down));
+            isEdite = false;
+        } else {//文字是完成的时候点击
+            tv_appointment.setText(getString(R.string.edit));
+            isEdite = true;
+            //点击完成，上传信息
+            //TODO
+        }
     }
+
+    private int selectedPosition = 0;//当前选中的位置
+    int lastPosition = 0;//点击不同item的button，上一次选中位置
+
+    @Override
+    public void itemChecked(int position, View view) {
+        delete_tv.setVisibility(View.VISIBLE);
+        lastPosition = selectedPosition;
+        selectedPosition = position;
+        Message message = new Message();
+        message.what = 0;
+        message.arg1 = selectedPosition;
+        handler.sendMessage(message);
+
+        if (selectedPosition != lastPosition) {//切换了item
+            radioButton = listView.getChildAt(lastPosition).findViewById(R.id.rb);
+            radioButton.performClick();
+            RadioButton radioButton2 = (RadioButton) view;
+            radioButton2.performClick();
+        }
+    }
+
     @OnClick(R.id.delete_tv)
-    public void deleteItem(){
-        //TODO
+    public void deleteItem() {
+        if (listView.getChildAt(selectedPosition).isSelected()) {
+            adapter.remove(selectedPosition);
+            RadioButton radioButton = listView.getChildAt(selectedPosition).findViewById(R.id.rb);
+            radioButton.performClick();
+            radioButton.setChecked(false);
+            adapter.notifyDataSetChanged();
+        }
     }
 }

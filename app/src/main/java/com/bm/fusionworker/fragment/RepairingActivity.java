@@ -25,11 +25,13 @@ import android.widget.Toast;
 import com.bm.fusionworker.R;
 import com.bm.fusionworker.constants.Constant;
 import com.bm.fusionworker.constants.Urls;
+import com.bm.fusionworker.utils.DateUtils;
 import com.bm.fusionworker.utils.FileSizeUtil;
 import com.bm.fusionworker.utils.SelectImageHelper;
 import com.bm.fusionworker.utils.Tools;
 import com.bm.fusionworker.utils.UploadImage;
 import com.bm.fusionworker.weights.ChooseImagePopupWindow;
+import com.bm.fusionworker.weights.CustomDatePicker;
 import com.bm.fusionworker.weights.NavBar;
 import com.corelibs.base.BaseActivity;
 import com.corelibs.base.BasePresenter;
@@ -38,7 +40,10 @@ import com.corelibs.utils.ToastMgr;
 import com.corelibs.views.NoScrollingGridView;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -111,7 +116,10 @@ public class RepairingActivity extends BaseActivity implements View.OnClickListe
         navBar.setColorRes(R.color.app_blue);
         navBar.setNavTitle(getString(R.string.repairing));
         arrive_time_tv.setText(Tools.getCurrentTime());
+        repaired_time_tv.setText(Tools.getCurrentTime());
+
         iv_back.setOnClickListener(this);
+        repaired_time_tv.setOnClickListener(this);
         mFiles = (HashMap<String, String>) getIntent().getSerializableExtra("files");
         if (mFiles == null) {
             mFiles = new HashMap<>();
@@ -125,7 +133,6 @@ public class RepairingActivity extends BaseActivity implements View.OnClickListe
                     //如果没有授权，则请求授权
                     ActivityCompat.requestPermissions(RepairingActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CALL_CAMERA);
                 } else {
-//                    helper.openCamera(position, "");
                     if (kind == 2) {
                         helper.openGallery(position, "");
                         return;
@@ -148,7 +155,7 @@ public class RepairingActivity extends BaseActivity implements View.OnClickListe
             }
         });
         if (mFiles != null && mFiles.size() != 0) {
-            Log.e("dp", "currentFile");
+            Log.e("dp", "----currentFile");
             ArrayList<String> localFiles = new ArrayList<>();
             for (String path : mFiles.keySet()) {
                 localFiles.add(path);
@@ -256,6 +263,21 @@ public class RepairingActivity extends BaseActivity implements View.OnClickListe
         }).start();
     }
 
+    public void changeStartDotToBlue() {
+        start_dot.setBackgroundResource(R.drawable.dots_blue_bg);
+        start_repair_tv.setTextColor(getResources().getColor(R.color.btn_blue));
+    }
+
+    public void changeStartDotToRed() {
+        start_dot.setBackgroundResource(R.drawable.dots_red_bg);
+        start_repair_tv.setTextColor(getResources().getColor(R.color.red));
+    }
+
+    public void changeEndDotToBlue() {
+        end_dot.setBackgroundResource(R.drawable.dots_blue_bg);
+        repair_history_tv.setTextColor(getResources().getColor(R.color.btn_blue));
+    }
+
     @Override
     protected BasePresenter createPresenter() {
         return null;
@@ -267,10 +289,68 @@ public class RepairingActivity extends BaseActivity implements View.OnClickListe
             case R.id.iv_back:
                 showDialogView();
                 break;
+            case R.id.repaired_time_tv:
+                showDatePickerDialog(repaired_time_tv, 2);
+                break;
             default:
                 break;
         }
     }
+
+    private void showDatePickerDialog(final TextView textView, final int i) {
+        CustomDatePicker customDatePicker = new CustomDatePicker(context, new CustomDatePicker.ResultHandler() {
+
+            private String starttime;
+            private String endtime;
+
+            @Override
+            public void handle(String time) { // 回调接口，获得选中的时间
+                try {
+                    if (i == 1) {
+                        starttime = DateUtils.format_yyyy_MM_dd_HH_mm.format(DateUtils.format_yyyy_MM_dd_HH_mm.parse(time));
+                        endtime = repaired_time_tv.getText().toString();
+                    } else {
+                        starttime = arrive_time_tv.getText().toString();
+                        endtime = DateUtils.format_yyyy_MM_dd_HH_mm.format(DateUtils.format_yyyy_MM_dd_HH_mm.parse(time));
+                    }
+                    if (isDateOneBigger(starttime, endtime)) {
+                        ToastMgr.show(R.string.information);
+                        return;
+                    }
+                    textView.setText(DateUtils.format_yyyy_MM_dd_HH_mm.format(DateUtils.format_yyyy_MM_dd_HH_mm.parse(time)));
+                    textView.setTextColor(getResources().getColor(R.color.text_main));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, "1970-01-01 00:00", "2099-12-12 00:00"); // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
+        customDatePicker.showSpecificTime(true); // 不显示时和分
+        //customDatePicker.showYearMonth();
+        customDatePicker.setIsLoop(false); // 不允许循环滚动
+        //customDatePicker.show(dateText.getText().toString() + " " + timeText.getText().toString());
+        customDatePicker.show(DateUtils.format_yyyy_MM_dd_HH_mm.format(new Date()));
+    }
+
+    private boolean isDateOneBigger(String beginDateTime, String endDateTime) {
+        boolean isBigger = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date dt1 = null;
+        Date dt2 = null;
+        try {
+            dt1 = sdf.parse(beginDateTime);
+            dt2 = sdf.parse(endDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if ((dt1.getTime() - dt2.getTime()) > 0) {
+            isBigger = true;
+        } else {
+            isBigger = false;
+        }
+        return isBigger;
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {

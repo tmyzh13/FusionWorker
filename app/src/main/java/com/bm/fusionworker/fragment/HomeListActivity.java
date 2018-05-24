@@ -29,8 +29,10 @@ public class HomeListActivity extends BaseActivity {
     private RepairListFragment repairListFragment;
     private InspectionListFragment inspectionListFragment;
 
-    public static Intent getLauncher(Context context) {
+    private int item = 0;
+    public static Intent getLauncher(Context context,int item) {
         Intent intent = new Intent(context, HomeListActivity.class);
+        intent.putExtra("item",item);
         return intent;
     }
 
@@ -44,38 +46,38 @@ public class HomeListActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        repair_tv.setTextColor(getResources().getColor(R.color.btn_blue));
-        inspection_tv.setTextColor(getResources().getColor(R.color.text_main));
-        repair_tv.setBackgroundResource(R.drawable.repair_shape_selected_bg);
-        inspection_tv.setBackgroundResource(R.drawable.inspection_shape_normal_bg);
+        item = getIntent().getIntExtra("item",0);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         repairListFragment = new RepairListFragment();
         inspectionListFragment = new InspectionListFragment();
-        ft.add(R.id.content, repairListFragment).commit();
+        if (item == 0) {
+            checkedItem0();
+            ft.add(R.id.content, repairListFragment).commit();
+        }else{
+            checkedItem1();
+            ft.add(R.id.content, inspectionListFragment).commit();
+        }
     }
 
     @OnClick(R.id.repair_tv)
     public void chosedRepair() {
-        repair_tv.setTextColor(getResources().getColor(R.color.btn_blue));
-        inspection_tv.setTextColor(getResources().getColor(R.color.text_main));
-        repair_tv.setBackgroundResource(R.drawable.repair_shape_selected_bg);
-        inspection_tv.setBackgroundResource(R.drawable.inspection_shape_normal_bg);
+        checkedItem0();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.hide(inspectionListFragment);
         if (!repairListFragment.isAdded()) {
             ft.add(R.id.content, repairListFragment).show(repairListFragment);
         } else {
+            checkedItem1();
             ft.show(repairListFragment);
         }
         ft.commit();
     }
 
+
+
     @OnClick(R.id.inspection_tv)
     public void chosedInspection() {
-        inspection_tv.setTextColor(getResources().getColor(R.color.btn_blue));
-        repair_tv.setTextColor(getResources().getColor(R.color.text_main));
-        repair_tv.setBackgroundResource(R.drawable.repair_shape_normal_bg);
-        inspection_tv.setBackgroundResource(R.drawable.inspection_shape_selected_bg);
+        checkedItem1();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.hide(repairListFragment);
         if (!inspectionListFragment.isAdded()) {
@@ -84,6 +86,18 @@ public class HomeListActivity extends BaseActivity {
             ft.show(inspectionListFragment);
         }
         ft.commit();
+    }
+    private void checkedItem0() {
+        repair_tv.setTextColor(getResources().getColor(R.color.btn_blue));
+        inspection_tv.setTextColor(getResources().getColor(R.color.text_main));
+        repair_tv.setBackgroundResource(R.drawable.repair_shape_selected_bg);
+        inspection_tv.setBackgroundResource(R.drawable.inspection_shape_normal_bg);
+    }
+    private void checkedItem1() {
+        inspection_tv.setTextColor(getResources().getColor(R.color.btn_blue));
+        repair_tv.setTextColor(getResources().getColor(R.color.text_main));
+        repair_tv.setBackgroundResource(R.drawable.repair_shape_normal_bg);
+        inspection_tv.setBackgroundResource(R.drawable.inspection_shape_selected_bg);
     }
 
     @OnClick(R.id.account_iv)

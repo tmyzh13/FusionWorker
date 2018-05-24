@@ -15,7 +15,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,20 +158,19 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/lable_normal">
+                <LinearLayout
+                    style="@style/lable_normal"
+                    android:layout_marginTop="-15dp">
 
                     <com.corelibs.views.NoScrollingGridView
-                        android:id="@+id/gv_pic"
+                        android:id="@+id/site_pic_gv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp_30"
-                        android:layout_marginTop="15dp"
                         android:cacheColorHint="@color/transparent"
                         android:horizontalSpacing="15dp"
                         android:listSelector="@color/transparent"
                         android:numColumns="4"
-                        android:scrollbars="none"
-                        android:verticalSpacing="15dp" />
+                        android:scrollbars="none" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -203,7 +203,9 @@
                 <Switch
                     android:id="@+id/sw_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/selector_find_fault_bg"
+                    android:track="@color/transparent" />
             </LinearLayout>
 
             <View
@@ -339,35 +341,36 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/lable_normal">
+                    <LinearLayout
+                        style="@style/lable_normal"
+                        android:layout_marginTop="-15dp">
 
                         <com.corelibs.views.NoScrollingGridView
-                            android:id="@+id/fault_gv_pic"
+                            android:id="@+id/fault_pic_gv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dp_30"
-                            android:layout_marginTop="15dp"
                             android:cacheColorHint="@color/transparent"
                             android:horizontalSpacing="15dp"
                             android:listSelector="@color/transparent"
                             android:numColumns="4"
-                            android:scrollbars="none"
-                            android:verticalSpacing="15dp" />
+                            android:scrollbars="none" />
                     </LinearLayout>
+                </LinearLayout>
 
-                    <View style="@style/line" />
+                <View style="@style/line" />
 
-                    <LinearLayout style="@style/lable_normal">
+                <LinearLayout
+                    style="@style/lable_normal"
+                    android:gravity="center">
 
-                        <TextView
-                            android:id="@+id/register_more_fault_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:drawableLeft="@drawable/blue_hellow_circle_bg"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:gravity="center"
-                            android:text="@string/register_more_fault" />
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/register_more_fault_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_delete_photo"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/register_more_fault" />
                 </LinearLayout>
             </LinearLayout>
 

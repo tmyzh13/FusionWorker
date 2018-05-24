@@ -16,6 +16,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".App"
@@ -66,12 +69,13 @@
             android:theme="@style/ImagePickerTheme" />
 
         <!-- 高德地图 -->
-        <!-- 设置key -->
+        <!-- 设置key 更换为自己注册应用时的key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="0a26d825f50c45a2182e43976c9238dc" />
         <!-- 定位需要的服务 -->
-        <!-- <service android:name="com.amap.api.location.APSService" /> -->
+        <service android:name="com.amap.api.location.APSService" />
+
         <activity
             android:name=".fragment.HomeListActivity"
             android:screenOrientation="portrait" />
@@ -93,10 +97,9 @@
         <activity
             android:name=".fragment.InspectioningActivity"
             android:screenOrientation="portrait" />
-
-         <activity
-         android:name=".MainCheckerActivity"
-         android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainCheckerActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.checker.CreatePatrolPlanActivity"
             android:screenOrientation="portrait" />
@@ -121,7 +124,10 @@
         <activity
             android:name=".views.checker.PileStatusActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.checker.GuildingActivity"></activity>
+        <activity android:name=".views.checker.GuildingActivity" />
+        <activity
+            android:name=".views.setting.AboutUsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

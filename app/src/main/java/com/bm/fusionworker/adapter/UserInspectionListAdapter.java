@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bm.fusionworker.R;
@@ -35,11 +36,11 @@ public class UserInspectionListAdapter extends QuickAdapter<UserInspectionListIt
                 .setText(R.id.inspection_time_tv, item.inspectionTime)
                 .setText(R.id.inspection_cycle_tv, item.inspectionCycle);
 
+        final RelativeLayout titleRl = helper.getView(R.id.rl_title);
         final RadioButton rb = helper.getView(R.id.rb);
         final TextView name = helper.getView(R.id.inspection_person_tv);
         final TextView time = helper.getView(R.id.inspection_time_tv);
         final TextView cycle = helper.getView(R.id.inspection_cycle_tv);
-
         changeUi(isChecked, name, time, cycle);
         rb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,12 +49,11 @@ public class UserInspectionListAdapter extends QuickAdapter<UserInspectionListIt
                     case R.id.rb:
                         if (isChecked) {
                             isChecked = false;
-                            changeUi(isChecked, name, time, cycle);
                         } else {
                             isChecked = true;
-                            changeUi(isChecked, name, time, cycle);
-                            listener.itemChecked(position);
+                            listener.itemChecked(position,v);
                         }
+                        changeUi(isChecked, name, time, cycle);
                         rb.setChecked(isChecked);
                         break;
                     default:
@@ -61,6 +61,7 @@ public class UserInspectionListAdapter extends QuickAdapter<UserInspectionListIt
                 }
             }
         });
+        titleRl.setOnClickListener(this);
         name.setOnClickListener(this);
         time.setOnClickListener(this);
         cycle.setOnClickListener(this);
@@ -87,7 +88,8 @@ public class UserInspectionListAdapter extends QuickAdapter<UserInspectionListIt
 
     public interface InnerItemOnClickListener {
         void viewClick(View view);
-        void itemChecked(int position);
+
+        void itemChecked(int position,View view);
     }
 
     public void setListener(InnerItemOnClickListener listener) {

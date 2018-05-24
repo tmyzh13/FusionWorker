@@ -29,4 +29,6 @@
     <color name="gun_status_bad">#f30f04</color>
     <color name="gun_status_free">#8ada8a</color>
 
+    <color name="text1">#59B29C</color>
+    <color name="text2">#333333</color>
 </resources>

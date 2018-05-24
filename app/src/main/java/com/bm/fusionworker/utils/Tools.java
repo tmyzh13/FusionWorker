@@ -2,6 +2,7 @@ package com.bm.fusionworker.utils;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +12,8 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.services.core.LatLonPoint;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -314,7 +317,7 @@ public class Tools {
 
         return mYear + "年" + mMonth + "月" + mDay + "号";
     }
-    public static double GetDistance(double lat1, double lng1, double lat2, double lng2) {
+    public static double getDistance(double lat1, double lng1, double lat2, double lng2) {
         double radLat1 = rad(lat1);
         double radLat2 = rad(lat2);
         double a = radLat1 - radLat2;
@@ -333,7 +336,9 @@ public class Tools {
         return d * Math.PI / 180.0;
     }
 
-
+    public static LatLng convertToLatLng(LatLonPoint latLonPoint) {
+        return new LatLng(latLonPoint.getLatitude(), latLonPoint.getLongitude());
+    }
     /**
      * 将数据保留两位小数
      */
@@ -379,5 +384,20 @@ public class Tools {
         BigDecimal b1 = new BigDecimal(Double.toString(v1));
         BigDecimal b2 = new BigDecimal(Double.toString(v2));
         return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    //获取版本名 格式:v1.0
+    private static final String VERSION_PREFIX = "v";
+    public static String getVersionName(Context context) {
+        PackageInfo pi = null;
+        try {
+            PackageManager pm = context.getPackageManager();
+            pi = pm.getPackageInfo(context.getPackageName(),
+                    PackageManager.GET_CONFIGURATIONS);
+            return VERSION_PREFIX+pi.versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

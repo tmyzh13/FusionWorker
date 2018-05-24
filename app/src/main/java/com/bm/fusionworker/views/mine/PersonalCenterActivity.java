@@ -10,12 +10,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bm.fusionworker.R;
+import com.bm.fusionworker.views.LoginActivity;
 import com.bm.fusionworker.views.checker.UsersInspectionListActivity;
 import com.bm.fusionworker.views.setting.SettingsActivity;
 import com.bm.fusionworker.weights.CircleImageView;
 import com.bm.fusionworker.weights.NavBar;
 import com.corelibs.base.BaseActivity;
 import com.corelibs.base.BasePresenter;
+import com.corelibs.utils.PreferencesHelper;
 
 import butterknife.Bind;
 
@@ -112,6 +114,30 @@ public class PersonalCenterActivity extends BaseActivity implements View.OnClick
         log_out_rl.setOnClickListener(this);
     }
 
+    public void showRedDots() {
+        int count = 1;
+        if (count > 0) {
+            already_accept_check_count.setBackgroundResource(R.drawable.dots_red_bg);
+        } else {
+            already_accept_check_count.setBackgroundResource(R.color.white);
+        }
+        if (count > 0) {
+            waite_accept_check_count.setBackgroundResource(R.drawable.dots_red_bg);
+        } else {
+            waite_accept_check_count.setBackgroundResource(R.color.white);
+        }
+        if (count > 0) {
+            un_completed_count.setBackgroundResource(R.drawable.dots_red_bg);
+        } else {
+            un_completed_count.setBackgroundResource(R.color.white);
+        }
+        if (count > 0) {
+            refund_history_count.setBackgroundResource(R.drawable.dots_red_bg);
+        } else {
+            refund_history_count.setBackgroundResource(R.color.white);
+        }
+    }
+
     @Override
     protected BasePresenter createPresenter() {
         return null;
@@ -141,6 +167,9 @@ public class PersonalCenterActivity extends BaseActivity implements View.OnClick
                 startActivity(SettingsActivity.getLauncher(context));
                 break;
             case R.id.log_out_rl:
+                PreferencesHelper.clearData();
+                startActivity(LoginActivity.getLauncher(context));
+                finish();
                 break;
             default:
                 break;

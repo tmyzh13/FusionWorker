@@ -11,6 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <com.amap.api.maps.MapView
+        android:layout_below="@id/nav"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/start_accept_tv"
         android:layout_width="match_parent"

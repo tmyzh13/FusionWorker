@@ -35,6 +35,11 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    repositories {
+        flatDir {
+            dirs 'libs'   // aar目录
+        }
+    }
 }
 
 dependencies {
@@ -54,6 +59,7 @@ dependencies {
     }
     compile 'com.alibaba:fastjson:1.1.68.android'
     implementation project(':zxing-android-embedded')
+    compile 'com.android.support:design:22.2.1'
 }
 
 configurations.all {

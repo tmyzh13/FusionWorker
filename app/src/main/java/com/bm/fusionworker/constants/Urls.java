@@ -1,13 +1,13 @@
 package com.bm.fusionworker.constants;
 
 /**
- * 接口地址
+ * 接口地址，具体定义
  * Created by john on 2017/11/7.
  */
 
 public class Urls {
 
-        public static final String ROOT = "http://114.115.169.46:8088/charger/api/v1/";
+    public static final String ROOT = "http://114.115.169.46:8088/charger/api/v1/";
 
     //登录
     public static final String LOGIN = "user/login";
@@ -46,4 +46,11 @@ public class Urls {
 
     //获取充电详情
     public static final String GET_CHARGE_STATUE = "charging/queryChargingState";
+
+    //用户意见反馈
+    public static final String PUBLISH_SUGGESTION = "appUserRecord/addFeedbackRecord";
+    //获取维修列表
+    public static final String GET_REPAIR_LIST = "";
+    //获取维修点详情
+    public static final String GET_ITEM_INFO = "";
 }

@@ -36,7 +36,7 @@ public class InspectionFragment extends BaseFragment {
 
     @OnClick(R.id.tv_list)
     public void goList() {
-        startActivity(HomeListActivity.getLauncher(getContext()));
+        startActivity(HomeListActivity.getLauncher(getContext(),1));
     }
 
     @Override

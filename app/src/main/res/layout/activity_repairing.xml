@@ -35,14 +35,14 @@
 
         <View
             android:id="@+id/start_dot"
-            android:layout_width="@dimen/dp_15"
-            android:layout_height="@dimen/dp_15"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_10"
             android:background="@drawable/dots_gray_bg" />
 
         <View
             android:id="@+id/end_dot"
-            android:layout_width="@dimen/dp_15"
-            android:layout_height="@dimen/dp_15"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_10"
             android:layout_alignParentRight="true"
             android:background="@drawable/dots_gray_bg" />
     </RelativeLayout>
@@ -118,8 +118,7 @@
                     android:id="@+id/gv_pic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_30"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="@dimen/dp_15"
                     android:cacheColorHint="@color/transparent"
                     android:horizontalSpacing="15dp"
                     android:listSelector="@color/transparent"

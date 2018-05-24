@@ -5,14 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.TextView;
 
 import com.bm.fusionworker.MainActivity;
 import com.bm.fusionworker.R;
 import com.bm.fusionworker.adapter.HomeListAdapter;
 import com.bm.fusionworker.model.beans.RepairDataBean;
+import com.bm.fusionworker.model.beans.RequestRepairListBean;
+import com.bm.fusionworker.model.interfaces.RepairListView;
+import com.bm.fusionworker.presenter.RepairListPresenter;
 import com.corelibs.base.BaseFragment;
-import com.corelibs.base.BasePresenter;
 import com.corelibs.views.cube.ptr.PtrFrameLayout;
 import com.corelibs.views.ptr.layout.PtrAutoLoadMoreLayout;
 import com.corelibs.views.ptr.layout.PtrLollipopLayout;
@@ -27,7 +28,7 @@ import butterknife.OnClick;
 /**
  * 维修列表
  */
-public class RepairListFragment extends BaseFragment implements PtrLollipopLayout.RefreshCallback, PtrAutoLoadMoreLayout.RefreshLoadCallback {
+public class RepairListFragment extends BaseFragment<RepairListView,RepairListPresenter> implements RepairListView,PtrLollipopLayout.RefreshCallback, PtrAutoLoadMoreLayout.RefreshLoadCallback {
 
     @Bind(R.id.ptrLayout)
     PtrAutoLoadMoreLayout<AutoLoadMoreListView> ptr;
@@ -47,6 +48,10 @@ public class RepairListFragment extends BaseFragment implements PtrLollipopLayou
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        RequestRepairListBean bean = new RequestRepairListBean();
+        bean.type = 0;
+//        presenter.getRepairListAction(bean);
+
         homeListAdapter = new HomeListAdapter(getContext());
         listView.setAdapter(homeListAdapter);
         ptr.setRefreshing();
@@ -94,8 +99,8 @@ public class RepairListFragment extends BaseFragment implements PtrLollipopLayou
     }
 
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
+    protected RepairListPresenter createPresenter() {
+        return new RepairListPresenter();
     }
 
     @Override
@@ -122,5 +127,10 @@ public class RepairListFragment extends BaseFragment implements PtrLollipopLayou
             setData();
             ptr.complete();
         }
+    }
+
+    @Override
+    public void renderData(List<RepairDataBean> list) {
+        //TODO
     }
 }
