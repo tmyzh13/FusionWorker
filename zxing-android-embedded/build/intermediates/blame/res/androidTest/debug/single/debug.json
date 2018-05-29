@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\PROJECT\\fusionWorker\\FusionWorker\\zxing-android-embedded\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_zxing_barcode_scanner.xml.flat",
+        "source": "E:\\PROJECT\\fusionWorker\\FusionWorker\\zxing-android-embedded\\build\\intermediates\\bundles\\debug\\res\\layout\\zxing_barcode_scanner.xml"
+    },
+    {
+        "merged": "E:\\PROJECT\\fusionWorker\\FusionWorker\\zxing-android-embedded\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw_zxing_beep.ogg.flat",
+        "source": "E:\\PROJECT\\fusionWorker\\FusionWorker\\zxing-android-embedded\\build\\intermediates\\bundles\\debug\\res\\raw\\zxing_beep.ogg"
+    },
+    {
+        "merged": "E:\\PROJECT\\fusionWorker\\FusionWorker\\zxing-android-embedded\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_zxing_capture.xml.flat",
+        "source": "E:\\PROJECT\\fusionWorker\\FusionWorker\\zxing-android-embedded\\build\\intermediates\\bundles\\debug\\res\\layout\\zxing_capture.xml"
+    }
+]
